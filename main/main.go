@@ -9,4 +9,6 @@ func main() {
 	greeting.Say("Hello")
 	greeting.SayWithColor("World")
 	my_flag.Fooo()
+	my_flag.Fooo2()
+
 }
