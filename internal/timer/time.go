@@ -7,7 +7,7 @@ import (
 func GetNowTime() time.Time {
 	// location, _ := time.LoadLocation("Asia/Taipei")
 	// return time.Now().In(location)
-	return time.Now()
+	return time.Now() 
 }
 
 func GetCalcTime(currTime time.Time, dur string) (time.Time, error) {

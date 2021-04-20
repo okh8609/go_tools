@@ -24,3 +24,4 @@ mysql -u kh -p
 # Allow Remote Access to MySQL
 # ref:
 # https://www.digitalocean.com/community/tutorials/how-to-allow-remote-access-to-mysql
+
