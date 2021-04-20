@@ -5,6 +5,8 @@ import (
 )
 
 func GetNowTime() time.Time {
+	// location, _ := time.LoadLocation("Asia/Taipei")
+	// return time.Now().In(location)
 	return time.Now()
 }
 
