@@ -53,3 +53,5 @@ func init() {
 	sqlCmd.Flags().StringVarP(&DBName, "dbname", "s", "", `資料庫名稱`)
 	sqlCmd.Flags().StringVarP(&TableName, "tablename", "n", "", `表格名稱`)
 }
+
+// go run main.go sql -s GoDB -n blog_tag -u kh -p 1234
