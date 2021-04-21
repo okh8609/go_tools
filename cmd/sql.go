@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"log"
+
 	"github.com/okh8609/go_tools/internal/sql2struct"
 	"github.com/spf13/cobra"
 )
@@ -27,15 +29,24 @@ var sqlCmd = &cobra.Command{
 		}
 
 		db := sql2struct.NewDBModel(&info)
-		db.Connect()
-		result, _ := db.GetTableMembers(DBName, TableName)
-		sql2struct.Generate(TableName, result)
+		err := db.Connect()
+		if err != nil {
+			log.Fatalf("db.Connect err: %v", err)
+		}
+		result, err := db.GetTableMembers(DBName, TableName)
+		if err != nil {
+			log.Fatalf("db.GetTableMembers err: %v", err)
+		}
+		err = sql2struct.Generate(TableName, result)
+		if err != nil {
+			log.Fatalf("template.Generate err: %v", err)
+		}
 	},
 }
 
 func init() {
 	sqlCmd.Flags().StringVarP(&DBType, "dbtpye", "t", "mysql", `資料庫類型`)
-	sqlCmd.Flags().StringVarP(&Hostname, "hostname", "o", "127.0.0.1", `伺服器名稱或IP`)
+	sqlCmd.Flags().StringVarP(&Hostname, "hostname", "o", "127.0.0.1:3306", `伺服器名稱或IP`)
 	sqlCmd.Flags().StringVarP(&UserName, "username", "u", "", `使用者名稱`)
 	sqlCmd.Flags().StringVarP(&Password, "password", "p", "", `密碼`)
 	sqlCmd.Flags().StringVarP(&Charset, "charset", "c", "utf8mb4", `編碼`)
